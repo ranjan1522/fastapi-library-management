@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+httpx
+pytest
+locust
+requests
+allure-pytest
+pytest-html 

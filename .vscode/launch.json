@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+
+    {
+      "name": "Debug Pytest",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "tests_fastapi_library"  // or your test file e.g., "tests/test_books.py"
+      ],
+      "justMyCode": false
+    }
+  ]
+}
