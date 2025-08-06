@@ -1,0 +1,35 @@
+name: Run API Tests on Master Merge
+
+on:
+  push:
+    branches:
+      - main  # Trigger only on push to master (includes merges)
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'  # Adjust as needed
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run API tests
+        run: |
+          pytest tests_fastapi_library/ -v --html=reports/report.html --self-contained-html
+
+      - name: Upload HTML report
+        if: always()  # Always upload report even if tests fail
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-report
+          path: reports/report.html
