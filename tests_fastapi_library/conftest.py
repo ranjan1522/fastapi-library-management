@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-API_BASE_URL = "http://127.0.0.1:8000"
+API_BASE_URL = "https://fastapi-library-management-ht5m.onrender.com"
 
 @pytest.fixture(scope="module")
 def api_url():
@@ -15,6 +15,7 @@ def headers():
 def get_request(api_url, headers):
     def _get(endpoint: str):
         url = f"{api_url}{endpoint}"
+        print(f"Request_URL: {url}, Request_Headers: {headers}")
         return requests.get(url, headers=headers)
     return _get
 
@@ -22,6 +23,7 @@ def get_request(api_url, headers):
 def post_request(api_url, headers):
     def _post(endpoint: str, payload: dict):
         url = f"{api_url}{endpoint}"
+        print(f"Request_URL: {url}, Request_Headers: {headers}, Request_Payload: {payload}")
         return requests.post(url, json=payload, headers=headers)
     return _post
 
@@ -29,6 +31,7 @@ def post_request(api_url, headers):
 def patch_request(api_url, headers):
     def _patch(endpoint: str, payload: dict):
         url = f"{api_url}{endpoint}"
+        print(f"Request_URL: {url}, Request_Headers: {headers}, Request_Payload: {payload}")
         return requests.patch(url, json=payload, headers=headers)
     return _patch
 
